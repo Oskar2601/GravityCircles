@@ -16,8 +16,6 @@ using std::string;
 class GBall {
 public:
    Vector2 gBallPosition;
-   Vector2 gBallMainVelocity = Vector2{1.f, 1.f};
-   Vector2 gBallFrameVelocity = Vector2{0.f, 0.f};
    Color ballColour = RED;
    float gravity = 200.f;
    float ballSize = 25.0f;
@@ -27,6 +25,8 @@ public:
 
    void Init();
    void Update();
+private:
+   Vector2 gBallFrameVelocity = Vector2{0.f, 0.f};
 };
 
 std::vector<GBall> gBallArray(0);
@@ -69,7 +69,7 @@ void GBall::Update() {
       float pullPower = 0.f;
       Vector2 currentAngle = GetAngle(gBallPosition, gBallArray[i].gBallPosition);
 
-      if(playerDistance - 1.f < ballSize + gBallArray[i].ballSize) {
+      if(playerDistance - 1.5f < ballSize + gBallArray[i].ballSize) {
          inverseVelocity = playerDistance - ballSize - gBallArray[i].ballSize;
       }
 
